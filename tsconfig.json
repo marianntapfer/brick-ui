@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES5",                                    /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. https://www.youtube.com/watch?v=Kgi1j8Zp6b0 */
+    "esModuleInterop": true,                            /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "forceConsistentCasingInFileNames": true,           /* Ensure that casing is correct in imports. */
+    "strict": true,                                     /* Enable all strict type-checking options. */
+    "skipLibCheck": true,                               /* Skip type checking all .d.ts files. */
+    
+    "jsx": "react",                                     /* Transform JSX into React code */
+    "module": "ESNext",                                 /* Specify what module code is generated. */
+    "declaration": true,                                /* Output a .d.ts file for our library types */
+    "declarationDir": "types",                          /* Where to place the .d.ts files */
+    "sourceMap": true,                                  /* Mapping JS code back to its TS file origins for debugging */
+    "outDir": "dist",                                   /* Directory where the project will be generated */
+    "moduleResolution": "node",                         /* Follow node.js rules for finding modules */
+    "allowSyntheticDefaultImports": true,               /* Assumes default exports if none are created manually */
+    "emitDeclarationOnly": true,                        /* Don't generate JS (rollup will do that) only export type declarations */
+    // "rootDir": "src",
+    // "allowJs": true,
+    // "resolveJsonModule": true,
+    // "paths": {
+    //   "@pipedrive/convention-ui-react": ["./index.ts"],
+    //   "@pipedrive/convention-ui-*": ["../packages/*"]
+    // }
+  },
+  // "include": ["src"],
+  // "exclude": ["dist"]
+}
