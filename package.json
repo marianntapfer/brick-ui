@@ -1,6 +1,10 @@
 {
-  "name": "brick-ui",
-  "version": "0.0.0",
+  "name": "@marianntapfer/brick-ui",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/marianntapfer"
+  },
+  "version": "0.0.1",
+  "allow-same-version": true,
   "description": "react ui components library",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -9,8 +13,8 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "rollup": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf dist && rollup -c --bundleConfigAsCjs"
   },
   "keywords": [
@@ -24,9 +28,14 @@
     "@rollup/plugin-node-resolve": "13.0.6",
     "@rollup/plugin-typescript": "8.3.0",
     "@types/react": "17.0.2",
-    "react": "17.0.2",
     "rollup": "2.60.0",
     "rollup-plugin-dts": "4.0.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
     "typescript": "4.4.4"
+  },
+  "peerDependencies": {
+    "react": "17.0.2"
   }
 }
