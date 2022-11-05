@@ -13,7 +13,7 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "rollup": "rollup -c",
+    "rollup": "rm -rf dist && rollup -c",
     "test": "jest",
     "build": "rm -rf dist && rollup -c --bundleConfigAsCjs",
     "storybook": "storybook dev -p 6006",
@@ -54,7 +54,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
     "storybook": "^7.0.0-alpha.47",
-    "typescript": "4.4.4"
+    "typescript": "4.8.4"
   },
   "peerDependencies": {
     "react": "18.2.0"
