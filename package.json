@@ -67,7 +67,13 @@
   },
   "size-limit": [
     {
+      "name": "commonjs",
       "path": "dist/cjs/index.js",
+      "limit": "9kB"
+    },
+    {
+      "name": "esm",
+      "path": "dist/esm/index.js",
       "limit": "9kB"
     }
   ]
