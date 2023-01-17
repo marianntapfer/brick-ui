@@ -10,7 +10,7 @@ jobs:
       CI_JOB_NUMBER: 1
     steps:
       - uses: actions/checkout@v1
-      - uses: marianntapfer/a11y-report-action
+      - uses: marianntapfer/a11y-report-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           storybook_url: 'somecustom.url'
