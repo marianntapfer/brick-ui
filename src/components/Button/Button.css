@@ -1,3 +1,62 @@
-button {
-    font-size: 60px;
-  }
+:root {
+  --color-yellow: #f4cb57;
+  --color-transparent-yellow: rgba(244, 203, 87, 0.5);
+  --color-pink: #f5c0bd;
+  --color-red: #e74a37;
+  --color-white: #e9e5e7;
+  --color-transparent-white: rgba(229, 229, 229, 0.2);
+  --color-lighr-blue: #91d6da;
+  --color-blue: #3571c9;
+  --color-greenish: #b6c6d0;
+  --color-black: #000000;
+  --color-gray-green: #848283;
+  --size-header-height: 100px;
+}
+
+.button {
+  font-family: 'Barriecito', BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 1.5rem;
+  border-radius: 0;
+  border: 0;
+  background: var(--color-black);
+  color: var(--color-white);
+  text-transform: uppercase;
+  padding: 10px 40px;
+}
+
+.button:hover {
+  color: var(--color-yellow);
+  color: var(--color-black);
+  background: var(--color-white);
+}
+
+.action {
+  background: var(--color-red);
+}
+
+.action:hover {
+  color: var(--color-red);
+  background: var(--color-white);
+}
+
+.action:active {
+  /* color: var(--color-yellow); */
+}
+
+.action:focus:not(focus-visible) {
+  outline: none;
+}
+
+.action:focus-visible {
+  border: solid 2px var(--color-white);
+}
+
+.calm {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+.bad {
+  background: var(--color-white);
+  color: yellow;
+}

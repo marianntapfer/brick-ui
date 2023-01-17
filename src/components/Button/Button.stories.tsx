@@ -9,7 +9,9 @@ export default {
   //   parameters: { layout: 'fullscreen' },
 } as StoryObj<typeof Button>;
 /** This story only shows the default variants defined in default.args. These will be applied to every story if nothing else is specified there. */
+
 export const Default: StoryObj<typeof Button> = {};
+
 export const Calm: StoryObj<typeof Button> = {
   args: { variant: 'calm' },
 };
@@ -17,6 +19,11 @@ export const Calm: StoryObj<typeof Button> = {
 export const ActionVariant: StoryObj<typeof Button> = {
   args: { variant: 'action' },
 };
+
+export const BadVariant: StoryObj<typeof Button> = {
+  args: { variant: 'bad' },
+};
+
 export const ActionLabel: StoryObj<typeof Button> = {
   args: { label: 'The purpose' },
 };
