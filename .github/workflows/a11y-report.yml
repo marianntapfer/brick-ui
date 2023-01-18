@@ -14,8 +14,9 @@ jobs:
         with:
           repository: marianntapfer/a11y-report-action
           token: ${{ secrets.A11Y_PAT }}
-      - name: Run a11y-report-action
-        uses: marianntapfer/a11y-report-action@main
+          path: ./.github/actions/a11y-report-action
+      - name: Run a11y-report-actions
+        uses: ./.github/actions/a11y-report-action/action
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           storybook_url: 'somecustom.url'
