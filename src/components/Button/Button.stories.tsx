@@ -1,38 +1,56 @@
 import { Button } from './Button';
-import { StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 // used to be ComponentStory and ComponentMeta
 
-export default {
+const meta: Meta<typeof Button> = {
   title: 'components/Button',
   component: Button,
+  //👇 Enables auto-generated documentation for the component story
+  tags: ['autodocs'],
   args: { label: 'Action phrase', variant: 'default' },
-  //   parameters: { layout: 'fullscreen' },
-} as StoryObj<typeof Button>;
-/** This story only shows the default variants defined in default.args. These will be applied to every story if nothing else is specified there. */
-
-export const Default: StoryObj<typeof Button> = {};
-
-export const Calm: StoryObj<typeof Button> = {
-  args: { variant: 'calm' },
+  parameters: {
+    // { layout: 'fullscreen' },
+    backgrounds: {
+      values: [
+        { name: 'red', value: '#f00' },
+        { name: 'green', value: '#0f0' },
+        { name: 'blue', value: '#00f' },
+      ],
+    },
+  },
 };
 
-export const ActionVariant: StoryObj<typeof Button> = {
+export default meta
+
+type Story = StoryObj<typeof Button>;
+
+/** This story only shows the default variants defined in default.args. These will be applied to every story if nothing else is specified there. */
+export const Primary: Story = {};
+
+export const CalmDark: Story = {
+  render: (args, context) => {
+    return <Button label='Calm'></Button>
+  },
+};
+
+export const ActionVariant: Story = {
   args: { variant: 'action' },
 };
 
-export const BadVariant: StoryObj<typeof Button> = {
+export const BadVariant: Story = {
   args: { variant: 'bad' },
 };
 
-export const ActionLabel: StoryObj<typeof Button> = {
+export const ActionLabel: Story = {
   args: { label: 'The purpose' },
 };
 
 /** This story combines the two previous stories together */
-export const ActionLabelVariant: StoryObj<typeof Button> = {
+export const ActionLabelVariant: Story = {
   args: { ...ActionLabel.args, ...ActionVariant.args },
 };
-export const ActionLabelVariantMobile: StoryObj<typeof Button> = {
+
+export const ActionLabelVariantMobile: Story = {
   args: { ...ActionLabelVariant.args },
   parameters: {
     viewport: {
