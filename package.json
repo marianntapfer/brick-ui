@@ -1,78 +1,44 @@
 {
-  "name": "@marianntapfer/brick-ui",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/marianntapfer"
-  },
-  "version": "0.0.1",
-  "allow-same-version": true,
-  "description": "react ui components library",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "files": [
-    "dist"
-  ],
-  "types": "dist/index.d.ts",
+  "name": "brick-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/brick-ui.umd.js",
+  "module": "./dist/brick-ui.es.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "rollup": "rm -rf dist && rollup -c",
-    "test": "jest",
-    "build": "rm -rf dist && rollup -c",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
     "size": "size-limit"
   },
-  "keywords": [
-    "ui",
-    "react"
-  ],
-  "author": "Mariann Tapfer",
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/core": "^7.20.2",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/preset-react": "^7.18.6",
-    "@babel/preset-typescript": "^7.18.6",
-    "@rollup/plugin-commonjs": "21.0.1",
-    "@rollup/plugin-node-resolve": "13.0.6",
-    "@rollup/plugin-typescript": "8.3.0",
-    "@size-limit/preset-small-lib": "^8.1.1",
-    "@storybook/addon-a11y": "^7.0.0-beta.31",
-    "@storybook/addon-actions": "^7.0.0-beta.31",
-    "@storybook/addon-essentials": "^7.0.0-beta.31",
-    "@storybook/addon-interactions": "^7.0.0-beta.31",
-    "@storybook/addon-links": "^7.0.0-beta.31",
-    "@storybook/react": "^7.0.0-beta.31",
-    "@storybook/react-webpack5": "^7.0.0-beta.31",
-    "@storybook/testing-library": "^0.0.14-next.0",
-    "@testing-library/react": "^13.4.0",
-    "@types/jest": "^29.2.2",
-    "@types/react": "17.0.2",
-    "babel-jest": "^29.2.2",
-    "babel-loader": "^8.3.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^29.2.2",
-    "jest-environment-jsdom": "^29.2.2",
-    "rollup": "2.60.0",
-    "rollup-plugin-dts": "4.0.1",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-terser": "^7.0.2",
-    "size-limit": "^8.1.1",
-    "storybook": "^7.0.0-beta.31",
-    "storybook-a11y-report": "^0.0.19",
-    "typescript": "4.8.4"
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
-  "peerDependencies": {
-    "react": "18.2.0"
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^8.1.2",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0",
+    "vite-plugin-dts": "^1.7.1"
   },
   "size-limit": [
     {
-      "name": "commonjs",
-      "path": "dist/cjs/index.js",
+      "name": "umd",
+      "path": "dist/brick-ui.umd.js",
       "limit": "9kB"
     },
     {
       "name": "esm",
-      "path": "dist/esm/index.js",
+      "path": "dist/brick-ui.es.js",
+      "limit": "9kB"
+    },
+    {
+      "name": "css",
+      "path": "dist/style.css",
       "limit": "9kB"
     }
   ]
