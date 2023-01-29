@@ -19,9 +19,9 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   features: {
-    storyStoreV7: true,
+    // storyStoreV7: true,
     interactionsDebugger:true,
-    buildStoriesJson:true
+    // buildStoriesJson: true, // 👈 Enable this to build the stories.json file
   },
 };
 
