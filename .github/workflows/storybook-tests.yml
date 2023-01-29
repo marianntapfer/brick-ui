@@ -17,6 +17,8 @@ jobs:
         run: npm i
       - name: Install Playwright
         run: npx playwright install --with-deps
+      - name: Start Storybook
+        run: npm run storybook
       - name: Run Storybook tests
         run: npm run test-storybook
         env:
