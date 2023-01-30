@@ -16,7 +16,8 @@
     "size": "size-limit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test-storybook": "test-storybook"
+    "test-storybook": "test-storybook",
+    "serve-and-test": "npx concurrently -k -s first -n 'SB,TEST' -c 'magenta,blue' 'npx http-server storybook-static --port 6006 --silent' 'npx wait-on tcp:6006 && npm run test-storybook'"
   },
   "dependencies": {
     "react": "^18.2.0",
