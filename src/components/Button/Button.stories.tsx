@@ -31,13 +31,13 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
   args: {
     label: 'Primary',
-    variant: 'bad',
+    variant: 'default',
   },
   play: async ({ canvasElement, args }) => {
     let canvas = within(canvasElement);
     let primaryButton = await canvas.getByRole('button', { name: /Primary/i });
     await expect(primaryButton.innerText).toBe('Primary'.toLocaleUpperCase());
-    // await expect(primaryButton).toHaveStyle('background-color: #e9e5e7');
+    await expect(primaryButton).toHaveStyle('background-color: #000000');
     await expect(primaryButton).toHaveClass(args.variant || '');
   },
 };
