@@ -18,7 +18,9 @@
     "build-storybook": "storybook build",
     "build-sb": "npm run build && npm run build-storybook",
     "test-storybook": "test-storybook",
-    "serve-test": "npx concurrently -k -s first -n 'SB,TEST' -c 'magenta,blue' 'npx http-server storybook-static --port 6006 --silent' 'npx wait-on tcp:6006 && npm run test-storybook'"
+    "serve-test": "npx concurrently -k -s first -n 'SB,TEST' -c 'magenta,blue' 'npx http-server storybook-static --port 6006 --silent' 'npx wait-on tcp:6006 && npm run test-storybook'",
+    "cov": "npx nyc report --reporter=lcov -t coverage/storybook --report-dir coverage/storybook",
+    "coverage": "npm run test-storybook -- --coverage"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -27,10 +29,12 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.1.2",
     "@storybook/addon-a11y": "^7.0.0-beta.36",
+    "@storybook/addon-coverage": "^0.0.7",
     "@storybook/addon-essentials": "^7.0.0-beta.35",
     "@storybook/addon-interactions": "^7.0.0-beta.35",
     "@storybook/addon-links": "^7.0.0-beta.35",
     "@storybook/addons": "^7.0.0-beta.35",
+    "@storybook/jest": "^0.0.10",
     "@storybook/react": "^7.0.0-beta.35",
     "@storybook/react-vite": "^7.0.0-beta.35",
     "@storybook/test-runner": "^0.10.0-next.5",

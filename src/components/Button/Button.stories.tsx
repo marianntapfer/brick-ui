@@ -1,5 +1,7 @@
 import { Button } from './Button';
 import { Meta, StoryObj } from '@storybook/react';
+import { within } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 // used to be ComponentStory and ComponentMeta
 
 const meta: Meta<typeof Button> = {
@@ -26,7 +28,19 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 /** This story only shows the default variants defined in default.args. These will be applied to every story if nothing else is specified there. */
-export const Primary: Story = {};
+export const Primary: Story = {
+  args: {
+    label: 'Primary',
+    variant: 'bad',
+  },
+  play: async ({ canvasElement, args }) => {
+    let canvas = within(canvasElement);
+    let primaryButton = await canvas.getByRole('button', { name: /Primary/i });
+    await expect(primaryButton.innerText).toBe('Primary'.toLocaleUpperCase());
+    // await expect(primaryButton).toHaveStyle('background-color: #e9e5e7');
+    await expect(primaryButton).toHaveClass(args.variant || '');
+  },
+};
 
 /** This story uses custom render function. */
 export const AllVariants: Story = {
