@@ -1,7 +1,7 @@
-import { Button } from './Button';
+import { expect } from '@storybook/jest';
 import { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { Button } from './Button';
 // used to be ComponentStory and ComponentMeta
 
 const meta: Meta<typeof Button> = {
@@ -36,9 +36,9 @@ export const Primary: Story = {
   play: async ({ canvasElement, args }) => {
     let canvas = within(canvasElement);
     let primaryButton = await canvas.getByRole('button', { name: /Primary/i });
-    await expect(primaryButton.innerText).toBe('Primary'.toLocaleUpperCase());
-    await expect(primaryButton).toHaveStyle('background-color: #000000');
-    await expect(primaryButton).toHaveClass(args.variant || '');
+    expect(primaryButton.innerText).toBe('Primary'.toLocaleUpperCase());
+    expect(primaryButton).toHaveStyle('background-color: #000000');
+    expect(primaryButton).toHaveClass(args.variant || '');
   },
 };
 
