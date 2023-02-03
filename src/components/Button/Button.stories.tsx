@@ -35,7 +35,7 @@ export const Primary: Story = {
   },
   play: async ({ canvasElement, args }) => {
     let canvas = within(canvasElement);
-    let primaryButton = await canvas.getByRole('button', { name: /Primary/i });
+    let primaryButton = canvas.getByRole('button', { name: /Primary/i });
     expect(primaryButton.innerText).toBe('Primary'.toLocaleUpperCase());
     expect(primaryButton).toHaveStyle('background-color: #000000');
     expect(primaryButton).toHaveClass(args.variant || '');
@@ -54,50 +54,12 @@ export const AllVariants: Story = {
       </>
     );
   },
-  parameters: {
-    a11y: {
-      config: {
-        // Setting the selector to '' will disable checks for this particular rule in this story, but violation will still be visible in incomplete tab.
-        rules: [
-          {
-            id: 'color-contrast',
-            selector: '',
-          },
-        ],
-      },
-    },
-  },
+
 };
 
 export const BadVariant: Story = {
   args: { variant: 'bad' },
-  parameters: {
-    a11y: {
-      // Optional selector to inspect
-      element: '#storybook-root',
-      config: {
-        rules: [
-          // {
-          //   // The autocomplete rule will not run based on the CSS selector provided
-          //   id: 'autocomplete-valid',
-          //   selector: '*:not([autocomplete="nope"])',
-          // },
-          {
-            // Setting the enabled option to false will disable checks for this particular rule on all stories.
-            id: 'color-contrast',
-            selector: '',
-          },
-          // {
-          //   // Setting the enabled option to false will disable checks for this particular rule on all stories.
-          //   id: 'color-contrast',
-          //   enabled: false,
-          // },
-        ],
-      },
-      options: {},
-      // manual: true,
-    },
-  },
+
 };
 
 export const ActionVariant: Story = {
@@ -106,11 +68,7 @@ export const ActionVariant: Story = {
 
 export const ActionLabel: Story = {
   args: { label: 'The purpose' },
-  // parameters: {
-  //   background: {
-  //     name: 'red',
-  //   },
-  // },
+
 };
 
 /** This story combines the two previous stories together */
