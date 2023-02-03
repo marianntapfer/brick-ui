@@ -18,9 +18,8 @@
     "build-storybook": "storybook build",
     "build-sb": "npm run build && npm run build-storybook",
     "test-storybook": "test-storybook",
-    "serve-test": "npx concurrently -k -s first -n 'SB,TEST' -c 'magenta,blue' 'npx http-server storybook-static --port 6006 --silent' 'npx wait-on tcp:6006 && npm run test-storybook'",
-    "cov": "npx nyc report --reporter=lcov -t coverage/storybook --report-dir coverage/storybook",
-    "coverage": "npm run test-storybook -- --coverage"
+    "test": "npx concurrently -k -s first -n 'SB,TEST' -c 'magenta,blue' 'npx http-server storybook-static --port 6006 --silent' 'npx wait-on tcp:6006 && npm run test-storybook'",
+    "coverage": "test-storybook --coverage"
   },
   "dependencies": {
     "react": "^18.2.0",

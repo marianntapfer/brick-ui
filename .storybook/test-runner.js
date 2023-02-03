@@ -12,7 +12,7 @@ module.exports = {
     await configureAxe(page, {
       rules: storyContext.parameters?.a11y?.config?.rules,
     });
-    await await checkA11y(page, '#storybook-root', {
+    await checkA11y(page, '#storybook-root', {
       detailedReport: true,
       detailedReportOptions: { html: true },
     });
