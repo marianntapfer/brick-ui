@@ -1,12 +1,15 @@
 name: Update Snapshots
 
 on:
-  issue_comment:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: false
 
 jobs:
   updatesnapshots:
-    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/update-snapshots'}}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -39,7 +42,7 @@ jobs:
           node-version: '16.x'
       - name: Install dependencies
         run: npm install
-      - name: Install Playwright browsers
+      - name: Install Playwright
         run: npx playwright install --with-deps
       # Update the snapshots based on the current UI
       - name: Update snapshots
