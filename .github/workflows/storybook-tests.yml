@@ -1,15 +1,12 @@
-name: Update Snapshots
+# .github/workflows/storybook-tests.yml
 
+name: Storybook Tests
 on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to run tests against'
-        type: environment
-        required: false
-
+  pull_request:
+    branches:
+      - main
 jobs:
-  update-snapshots:
+  test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -23,11 +20,14 @@ jobs:
         run: npx playwright install --with-deps
       - name: Build Storybook
         run: npm run build-sb
-      - name: Update snapshots
+      - name: Serve Storybook and run tests
         run: |
           npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on tcp:6006 && npm run test-storybook -- --updateSnapshot"
-      - uses: stefanzweifel/git-auto-commit-action@v4
+            "npx wait-on tcp:6006 && npm run test-storybook"
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v3
         with:
-          commit_message: '[CI] Update Snapshots'
+          name: diff
+          path: diff/*.png
