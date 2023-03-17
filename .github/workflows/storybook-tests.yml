@@ -6,8 +6,6 @@ on:
       - main
 jobs:
   test:
-    permissions:
-      checks: write # for actions/upload-artifact
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
