@@ -6,6 +6,8 @@ on:
       - main
 jobs:
   test:
+    permissions:
+      checks: write # for actions/upload-artifact
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -24,9 +26,9 @@ jobs:
           npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "npx http-server storybook-static --port 6006 --silent" \
             "npx wait-on tcp:6006 && npm run test-storybook"
-      - name: Keep failed test results
+      - name: Upload test results
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
-          if: failure()
-          name: Failed test diffs
-          path: diff/
+          name: diff
+          path: diff/*.png
