@@ -27,5 +27,6 @@ jobs:
       - name: Keep failed test results
         uses: actions/upload-artifact@v3
         with:
+          if: failure()
           name: Failed test diffs
-          path: diff/*.png
+          path: diff/
