@@ -39,6 +39,7 @@ const config: TestRunnerConfig = {
       customSnapshotIdentifier: context.id,
       dumpInlineDiffToConsole: true,
       allowSizeMismatch: true,
+      customDiffDir: './diff'
     });
 
     /** Accessibility test */

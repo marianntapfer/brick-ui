@@ -105,7 +105,7 @@ export const ActionVariant: Story = {
 };
 
 export const ActionLabel: Story = {
-  args: { label: 'The purpose' },
+  args: { label: 'The purpose of the button' },
   // parameters: {
   //   background: {
   //     name: 'red',
