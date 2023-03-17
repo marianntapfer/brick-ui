@@ -1,0 +1,16 @@
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Log level: $LEVEL"
+          echo "Tags: $TAGS"
+          echo "Environment: $ENVIRONMENT"
+      - name: current branch
+        run: |
+          array = ${{ github.event.pull_request.labels }}
+          echo "${array[*]}"
