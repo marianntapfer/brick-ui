@@ -10,7 +10,7 @@ const meta: Meta<typeof Button> = {
   component: Button,
   //👇 Enables auto-generated documentation for the component story
   tags: ['autodocs'],
-  args: { label: 'Action phrase', variant: 'default' },
+  args: { label: 'Action', variant: 'default' },
   parameters: {
     // { layout: 'fullscreen' },
     backgrounds: {

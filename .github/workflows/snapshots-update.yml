@@ -29,3 +29,7 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: '[CI] Updated Snapshots'
+      - uses: actions-ecosystem/action-remove-labels@v1
+        # if: ${{ startsWith(github.event.comment.body, '/remove-labels') }}
+        with:
+          labels: update-snapshots
