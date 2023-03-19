@@ -8,6 +8,7 @@ jobs:
   log-the-inputs:
     runs-on: ubuntu-latest
     # if: ${{ contains(github.event.*.labels.*.name, 'bug') }}
-    if: contains(github.event.issue.labels.*.name, 'bug')
+    if: contains(github.event.pull_request.labels.*.name, 'bug')
+    # if: contains(github.event.issue.labels.*.name, 'bug')
     steps:
       - run: echo "you added bug label"
