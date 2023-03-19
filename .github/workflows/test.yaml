@@ -1,0 +1,17 @@
+name: Test Label trigger
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    # if: |
+    #   contains(github.event.issue.labels.*.name, 'update-snapshots')
+    steps:
+      - run: |
+          echo "Log level: $LEVEL"
+          echo github.event.issue.labels.*.name
+          echo ${{ github.event.issue.labels.*.name }}
+          echo "$github.event.issue.labels.*.name"
