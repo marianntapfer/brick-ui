@@ -11,7 +11,7 @@ jobs:
     #   contains(github.event.issue.labels.*.name, 'update-snapshots')
     steps:
       - run: |
-          echo "Log level: $LEVEL"
+          echo "This workflow was triggered"
           echo github.event.issue.labels.*.name
           echo ${{ github.event.issue.labels.*.name }}
           echo "$github.event.issue.labels.*.name"
