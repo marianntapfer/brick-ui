@@ -1,5 +1,4 @@
-name: Update Snapshots
-
+name: 'Update Snapshots'
 on:
   workflow_dispatch:
     inputs:
