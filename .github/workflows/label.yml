@@ -12,6 +12,7 @@ jobs:
     steps:
       - run: |
           echo "This workflow was triggered"
+          echo ${{ contains(github.event.issue.labels.*.name, 'update-snapshots') }}
           echo ${{ github.event.issue.labels }}
           echo ${{ github.event.issue.labels.* }}
           echo ${{ github.event.issue.labels.*.name }}
