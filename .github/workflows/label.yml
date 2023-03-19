@@ -7,13 +7,6 @@ on:
 jobs:
   log-the-inputs:
     runs-on: ubuntu-latest
-    # if: |
-    #   contains(github.event.issue.labels.*.name, 'update-snapshots')
+    if: contains(github.event.issue.labels.*.name, 'bug')
     steps:
-      - run: |
-          echo "This workflow was triggered"
-          echo ${{ contains(github.event.issue.labels.*.name, 'update-snapshots') }}
-          echo ${{ github.event.issue.labels }}
-          echo ${{ github.event.issue.labels.* }}
-          echo ${{ github.event.issue.labels.*.name }}
-          echo ${ github.event.issue.labels.*.name }
+      - run: echo "you added bug label"
