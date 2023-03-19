@@ -5,8 +5,7 @@ on:
 jobs:
   log-the-inputs:
     runs-on: ubuntu-latest
-    if: |
-      contains(github.event.issue.labels.*.name, 'update-snapshots')
+    if: contains(github.event.issue.labels.*.name, 'update-snapshots')
     steps:
       - run: |
           echo "Log level: $LEVEL"

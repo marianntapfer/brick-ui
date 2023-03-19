@@ -12,5 +12,7 @@ jobs:
     steps:
       - run: |
           echo "This workflow was triggered"
-          echo ${{ github.event.issue.labels.*.name[0] }}
-          echo "${github.event.issue.labels.*.name}"
+          echo ${{ github.event.issue.labels }}
+          echo ${{ github.event.issue.labels.* }}
+          echo ${{ github.event.issue.labels.*.name }}
+          echo ${ github.event.issue.labels.*.name }
