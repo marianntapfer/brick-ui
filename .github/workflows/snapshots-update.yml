@@ -2,17 +2,15 @@ name: Update Snapshots
 
 on:
   workflow_dispatch:
-  # pull_request:
-  #   types: [labeled]
+  pull_request:
+    types: [labeled]
 
 jobs:
   update-snapshots:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    # if: ${{ contains(github.event.issue.labels.*.name, 'update-snapshots') }}
-    if: github.event.issue.labels.*.name == 'update-snapshots'
+    if: contains(github.event.pull_request.labels.*.name, 'update-snapshots')
     steps:
-      - run: echo "$github.event.issue.labels.*.name"
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -30,4 +28,4 @@ jobs:
             "npx wait-on tcp:6006 && npm run test-storybook -- --updateSnapshot"
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: '[CI] Update Snapshots'
+          commit_message: '[CI] Updated Snapshots'
