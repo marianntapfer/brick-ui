@@ -1,7 +1,7 @@
-import { Button } from './Button';
+import { expect } from '@storybook/jest';
 import { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { Button } from './Button';
 // used to be ComponentStory and ComponentMeta
 
 const meta: Meta<typeof Button> = {
@@ -35,10 +35,10 @@ export const Primary: Story = {
   },
   play: async ({ canvasElement, args }) => {
     let canvas = within(canvasElement);
-    let primaryButton = await canvas.getByRole('button', { name: /Primary/i });
-    await expect(primaryButton.innerText).toBe('Primary'.toLocaleUpperCase());
-    await expect(primaryButton).toHaveStyle('background-color: #000000');
-    await expect(primaryButton).toHaveClass(args.variant || '');
+    let primaryButton = canvas.getByRole('button', { name: /Primary/i });
+    expect(primaryButton.innerText).toBe('Primary'.toLocaleUpperCase());
+    expect(primaryButton).toHaveStyle('background-color: #000000');
+    expect(primaryButton).toHaveClass(args.variant || '');
   },
 };
 
@@ -49,23 +49,10 @@ export const AllVariants: Story = {
       <>
         <Button label='Default' />
         <Button label='Primary' variant='action' />
-        <Button label='Bad' variant='bad' />
+        {/* <Button label='Bad' variant='bad' /> */}
         <Button label='Calm' variant='calm' />
       </>
     );
-  },
-  parameters: {
-    a11y: {
-      config: {
-        // Setting the selector to '' will disable checks for this particular rule in this story, but violation will still be visible in incomplete tab.
-        rules: [
-          {
-            id: 'color-contrast',
-            selector: '',
-          },
-        ],
-      },
-    },
   },
 };
 
@@ -73,29 +60,9 @@ export const BadVariant: Story = {
   args: { variant: 'bad' },
   parameters: {
     a11y: {
-      // Optional selector to inspect
-      element: '#storybook-root',
       config: {
-        rules: [
-          // {
-          //   // The autocomplete rule will not run based on the CSS selector provided
-          //   id: 'autocomplete-valid',
-          //   selector: '*:not([autocomplete="nope"])',
-          // },
-          {
-            // Setting the enabled option to false will disable checks for this particular rule on all stories.
-            id: 'color-contrast',
-            selector: '',
-          },
-          // {
-          //   // Setting the enabled option to false will disable checks for this particular rule on all stories.
-          //   id: 'color-contrast',
-          //   enabled: false,
-          // },
-        ],
+        rules: [{ id: 'color-contrast', selector: '' }],
       },
-      options: {},
-      // manual: true,
     },
   },
 };
