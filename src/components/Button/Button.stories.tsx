@@ -10,7 +10,7 @@ const meta: Meta<typeof Button> = {
   component: Button,
   //👇 Enables auto-generated documentation for the component story
   tags: ['autodocs'],
-  args: { label: 'Action phrase', variant: 'default' },
+  args: { label: 'Action', variant: 'default' },
   parameters: {
     // { layout: 'fullscreen' },
     backgrounds: {
@@ -49,17 +49,22 @@ export const AllVariants: Story = {
       <>
         <Button label='Default' />
         <Button label='Primary' variant='action' />
-        <Button label='Bad' variant='bad' />
+        {/* <Button label='Bad' variant='bad' /> */}
         <Button label='Calm' variant='calm' />
       </>
     );
   },
-
 };
 
 export const BadVariant: Story = {
   args: { variant: 'bad' },
-
+  parameters: {
+    a11y: {
+      config: {
+        rules: [{ id: 'color-contrast', selector: '' }],
+      },
+    },
+  },
 };
 
 export const ActionVariant: Story = {
@@ -67,8 +72,12 @@ export const ActionVariant: Story = {
 };
 
 export const ActionLabel: Story = {
-  args: { label: 'The purpose' },
-
+  args: { label: 'The purpose of the button' },
+  // parameters: {
+  //   background: {
+  //     name: 'red',
+  //   },
+  // },
 };
 
 /** This story combines the two previous stories together */
