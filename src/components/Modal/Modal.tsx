@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 
 import './Modal.css';
@@ -6,24 +6,27 @@ import { Button } from '../Button';
 
 export interface ModalProps {
   open?: boolean;
+  /** Modal description */
   children?: React.ReactNode[];
+  /** title of the modal */
   title?: string;
 }
 
 export const Modal = ({ open, children, title }: ModalProps) => {
-  const className = `dialog`;
+  const className = `modal`;
 
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <Button variant='action' label='open Modal'></Button>
-      </Dialog.Trigger>
-      <Dialog.Portal>
+    <>
+      <Dialog.Root>
+        <Dialog.Trigger asChild>
+          <Button variant='action' label='open Modal'></Button>
+        </Dialog.Trigger>
+        {/* <Dialog.Portal container={container && container}> */}
         <Dialog.Overlay className='DialogOverlay' />
         <Dialog.Content className='DialogContent'>
-          <Dialog.Title className='DialogTitle'>Edit profile</Dialog.Title>
+          <Dialog.Title className='DialogTitle'>{title}</Dialog.Title>
           <Dialog.Description className='DialogDescription'>
-            Make changes to your profile here. Click save when you're done.
+            {children}
           </Dialog.Description>
 
           <div
@@ -41,7 +44,8 @@ export const Modal = ({ open, children, title }: ModalProps) => {
             <Button variant='action' label='x'></Button>
           </Dialog.Close> */}
         </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+        {/* </Dialog.Portal> */}
+      </Dialog.Root>
+    </>
   );
 };
