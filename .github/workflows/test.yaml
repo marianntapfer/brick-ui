@@ -1,0 +1,13 @@
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.event.issue.labels.*.name, 'update-snapshots') }}
+    steps:
+      - run: |
+          echo "Log level: $LEVEL"
+          echo "Tags: $TAGS"
+          echo "Environment: $github.event.issue.labels.*.name"
