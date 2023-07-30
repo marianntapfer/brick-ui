@@ -1,53 +1,49 @@
 import { style } from '@vanilla-extract/css';
+import { vars } from '../../global.css';
 
 export const button = style({
-  vars: {
-    '--color-black': '#000000',
-    '--color-white': '#e9e5e7',
-  },
   fontFamily: 'Barriecito, sans-serif',
   fontSize: '1.5rem',
   borderRadius: 0,
   border: 0,
-  background: 'var(--color-black)',
-  color: 'var(--color-white)',
+  background: vars.color.black,
+  color: vars.color.white,
   textTransform: 'uppercase',
   padding: '10px 40px',
 
   selectors: {
     '&:hover': {
-      color: 'var(--color-black)',
-      background: 'var(--color-white)',
+      color: vars.color.black,
+      background: vars.color.white,
     },
   },
 });
 
-// .action {
-//   background: var(--color-red);
-// }
+export const action = style({
+  background: vars.color.red,
+  ':hover': {
+    color: vars.color.red,
+    background: vars.color.white,
+  },
+  ':active': {
+    color: vars.color.yellow,
+  },
+  ':focus-visible': {
+    border: `solid 2px ${vars.color.yellow}`,
+  },
+  selectors: {
+    '&:focus:not(focus-visible)': {
+      outline: 'none',
+    },
+  },
+});
 
-// .action:hover {
-//   color: var(--color-red);
-//   background: var(--color-white);
-// }
+export const calm = style({
+  background: vars.color.white,
+  color: vars.color.black,
+});
 
-// .action:active {
-//   /* color: var(--color-yellow); */
-// }
-
-// .action:focus:not(focus-visible) {
-//   outline: none;
-// }
-
-// .action:focus-visible {
-//   border: solid 2px var(--color-white);
-// }
-
-// .calm {
-//   background: var(--color-white);
-//   color: var(--color-black);
-// }
-// .bad {
-//   background: var(--color-white);
-//   color: yellow;
-// }
+export const bad = style({
+  background: vars.color.white,
+  color: vars.color.yellow,
+});

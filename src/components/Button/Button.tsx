@@ -1,5 +1,5 @@
 import React from 'react';
-import { button } from './button.css';
+import { button, action, calm, bad } from './button.css';
 
 export interface ButtonProps {
   variant?: 'default' | 'action' | 'calm' | 'bad';
@@ -14,13 +14,16 @@ export const Button = ({
   href,
   onClick,
 }: ButtonProps) => {
-  const className = `${button} ${variant}`;
+  const classNames = [button];
+  variant === 'action' && classNames.push(action);
+  variant === 'calm' && classNames.push(calm);
+  variant === 'bad' && classNames.push(bad);
   return href ? (
     <a href={href}>
-      <a className={className}>{label}</a>
+      <a className={classNames.join(' ')}>{label}</a>
     </a>
   ) : (
-    <button className={className} onClick={onClick}>
+    <button className={classNames.join(' ')} onClick={onClick}>
       {label}
     </button>
   );
