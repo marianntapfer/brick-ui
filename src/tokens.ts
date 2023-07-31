@@ -1,6 +1,4 @@
-import { createGlobalTheme } from '@vanilla-extract/css';
-
-export const vars = createGlobalTheme(':root', {
+export const tokens = {
   color: {
     black: '#000000',
     white: '#e9e5e7',
@@ -17,4 +15,4 @@ export const vars = createGlobalTheme(':root', {
   size: {
     headerHeight: '100px',
   },
-});
+} as const;
