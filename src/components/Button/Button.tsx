@@ -4,24 +4,24 @@ import { RecipeVariants } from '@vanilla-extract/recipes';
 
 export interface ButtonProps {
   variant?: 'default' | 'action' | 'calm' | 'bad';
-  label: string;
+  children: React.ReactNode;
   onClick?: () => {};
   href?: string;
 }
 
 export const Button = ({
   variant = 'default',
-  label,
+  children,
   href,
   onClick,
 }: ButtonProps) => {
   return href ? (
     <a href={href}>
-      <a className={buttonStyle({ variant })}>{label}</a>
+      <a className={buttonStyle({ variant })}>{children}</a>
     </a>
   ) : (
     <button className={buttonStyle({ variant })} onClick={onClick}>
-      {label}
+      {children}
     </button>
   );
 };
