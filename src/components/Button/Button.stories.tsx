@@ -10,7 +10,7 @@ const meta: Meta<typeof Button> = {
   component: Button,
   //👇 Enables auto-generated documentation for the component story
   tags: ['autodocs'],
-  args: { label: 'Action', variant: 'default' },
+  args: { children: 'Action', variant: 'default' },
   parameters: {
     // { layout: 'fullscreen' },
     backgrounds: {
@@ -30,7 +30,7 @@ type Story = StoryObj<typeof Button>;
 /** This story only shows the default variants defined in default.args. These will be applied to every story if nothing else is specified there. */
 export const Primary: Story = {
   args: {
-    label: 'Primary',
+    children: 'Primary',
     variant: 'default',
   },
   play: async ({ canvasElement, args }) => {
@@ -47,10 +47,10 @@ export const AllVariants: Story = {
   render: (args, context) => {
     return (
       <>
-        <Button label='Default' />
-        <Button label='Primary' variant='action' />
-        {/* <Button label='Bad' variant='bad' /> */}
-        <Button label='Calm' variant='calm' />
+        <Button>Default</Button>
+        <Button variant="action">Primary</Button>
+        {/* <Button children='Bad' variant='bad' /> */}
+        <Button variant="calm">Calm</Button>
       </>
     );
   },
@@ -72,7 +72,7 @@ export const ActionVariant: Story = {
 };
 
 export const ActionLabel: Story = {
-  args: { label: 'The purpose of the button' },
+  args: { children: 'The purpose of the button' },
   // parameters: {
   //   background: {
   //     name: 'red',

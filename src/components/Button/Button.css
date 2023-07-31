@@ -25,6 +25,11 @@
   padding: 10px 40px;
 }
 
+.button:focus-visible {
+  outline: solid 2px var(--color-blue);
+  outline-offset: 1px;
+}
+
 .button:hover {
   color: var(--color-yellow);
   color: var(--color-black);
@@ -56,6 +61,7 @@
   background: var(--color-white);
   color: var(--color-black);
 }
+
 .bad {
   background: var(--color-white);
   color: yellow;

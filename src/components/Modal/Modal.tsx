@@ -1,51 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 
 import './Modal.css';
 import { Button } from '../Button';
 
 export interface ModalProps {
-  open?: boolean;
+  visible?: boolean;
   /** Modal description */
-  children?: React.ReactNode[];
+  children?: React.ReactElement;
   /** title of the modal */
   title?: string;
 }
 
-export const Modal = ({ open, children, title }: ModalProps) => {
+export const Modal = ({ visible, children, title }: ModalProps) => {
   const className = `modal`;
+  const dialog = useRef<HTMLDialogElement>(null);
+
+  const openModal = () => {
+    dialog.current?.showModal();
+  };
+
+  const closeModal = () => {
+    dialog.current?.close();
+  };
+
+  visible ? openModal() : closeModal();
 
   return (
-    <>
-      <Dialog.Root>
-        <Dialog.Trigger asChild>
-          <Button variant='action' label='open Modal'></Button>
-        </Dialog.Trigger>
-        {/* <Dialog.Portal container={container && container}> */}
-        <Dialog.Overlay className='DialogOverlay' />
-        <Dialog.Content className='DialogContent'>
-          <Dialog.Title className='DialogTitle'>{title}</Dialog.Title>
-          <Dialog.Description className='DialogDescription'>
-            {children}
-          </Dialog.Description>
-
-          <div
-            style={{
-              display: 'flex',
-              marginTop: 25,
-              justifyContent: 'flex-end',
-            }}
-          >
-            <Dialog.Close asChild>
-              <Button variant='bad' label='Save changes'></Button>
-            </Dialog.Close>
-          </div>
-          {/* <Dialog.Close asChild>
-            <Button variant='action' label='x'></Button>
-          </Dialog.Close> */}
-        </Dialog.Content>
-        {/* </Dialog.Portal> */}
-      </Dialog.Root>
-    </>
+    <dialog ref={dialog}>
+      <p>{title}</p>
+      {children}
+    </dialog>
   );
 };

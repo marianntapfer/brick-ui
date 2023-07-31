@@ -3,25 +3,25 @@ import './Button.css';
 
 export interface ButtonProps {
   variant?: 'default' | 'action' | 'calm' | 'bad';
-  label: string;
-  onClick?: () => {};
+  children: string;
+  onClick?: React.MouseEventHandler;
   href?: string;
 }
 
 export const Button = ({
   variant = 'default',
-  label,
+  children,
   href,
   onClick,
 }: ButtonProps) => {
   const className = `button ${variant}`;
   return href ? (
     <a href={href}>
-      <a className={className}>{label}</a>
+      <a className={className}>{children}</a>
     </a>
   ) : (
     <button className={className} onClick={onClick}>
-      {label}
+      {children}
     </button>
   );
 };
