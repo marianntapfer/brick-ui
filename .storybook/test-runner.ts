@@ -49,8 +49,9 @@ const config: TestRunnerConfig = {
     });
 
     await checkA11y(page, '#storybook-root', {
-      detailedReport: true,
-      detailedReportOptions: { html: true },
+      // detailedReport: true,
+      // detailedReportOptions: { html: true },
+      verbose: false,
     });
   },
 };

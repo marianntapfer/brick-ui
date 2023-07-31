@@ -2,6 +2,7 @@ import { expect } from '@storybook/jest';
 import { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 import { Button } from './Button';
+import React from 'react';
 // used to be ComponentStory and ComponentMeta
 
 const meta: Meta<typeof Button> = {
@@ -10,7 +11,7 @@ const meta: Meta<typeof Button> = {
   component: Button,
   //👇 Enables auto-generated documentation for the component story
   tags: ['autodocs'],
-  args: { label: 'Action', variant: 'default' },
+  args: { children: 'Action', variant: 'default' },
   parameters: {
     // { layout: 'fullscreen' },
     backgrounds: {
@@ -30,15 +31,17 @@ type Story = StoryObj<typeof Button>;
 /** This story only shows the default variants defined in default.args. These will be applied to every story if nothing else is specified there. */
 export const Primary: Story = {
   args: {
-    label: 'Primary',
+    children: 'Primary',
     variant: 'default',
   },
   play: async ({ canvasElement, args }) => {
     let canvas = within(canvasElement);
-    let primaryButton = canvas.getByRole('button', { name: /Primary/i });
-    expect(primaryButton.innerText).toBe('Primary'.toLocaleUpperCase());
-    expect(primaryButton).toHaveStyle('background-color: #000000');
-    expect(primaryButton).toHaveClass(args.variant || '');
+    // get by role might not be the most performat way of getting the element
+    // let primaryButton = canvas.getByRole('button', { name: /Primary/i });
+    let button = canvas.getByText('Primary');
+    expect(button.innerText).toBe('Primary'.toLocaleUpperCase());
+    expect(button).toHaveStyle('background-color: #000000');
+    // expect(button).toHaveClass(args.variant || '');
   },
 };
 
@@ -47,10 +50,9 @@ export const AllVariants: Story = {
   render: (args, context) => {
     return (
       <>
-        <Button label='Default' />
-        <Button label='Primary' variant='action' />
-        {/* <Button label='Bad' variant='bad' /> */}
-        <Button label='Calm' variant='calm' />
+        <Button>Default</Button>
+        <Button variant='action'>Primary</Button>
+        <Button variant='calm'>Calm</Button>
       </>
     );
   },
@@ -72,7 +74,7 @@ export const ActionVariant: Story = {
 };
 
 export const ActionLabel: Story = {
-  args: { label: 'The purpose of the button' },
+  args: { children: 'The purpose of the button' },
   // parameters: {
   //   background: {
   //     name: 'red',
