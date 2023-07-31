@@ -12,6 +12,7 @@ const meta: Meta<typeof Button> = {
   //👇 Enables auto-generated documentation for the component story
   tags: ['autodocs'],
   args: { children: 'Action', variant: 'default' },
+  args: { children: 'Action', variant: 'default' },
   parameters: {
     // { layout: 'fullscreen' },
     backgrounds: {
@@ -31,6 +32,7 @@ type Story = StoryObj<typeof Button>;
 /** This story only shows the default variants defined in default.args. These will be applied to every story if nothing else is specified there. */
 export const Primary: Story = {
   args: {
+    children: 'Primary',
     children: 'Primary',
     variant: 'default',
   },
@@ -74,6 +76,7 @@ export const ActionVariant: Story = {
 };
 
 export const ActionLabel: Story = {
+  args: { children: 'The purpose of the button' },
   args: { children: 'The purpose of the button' },
   // parameters: {
   //   background: {

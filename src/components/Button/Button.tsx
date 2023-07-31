@@ -5,7 +5,7 @@ import { RecipeVariants } from '@vanilla-extract/recipes';
 export interface ButtonProps {
   variant?: 'default' | 'action' | 'calm' | 'bad';
   children: React.ReactNode;
-  onClick?: () => {};
+  onClick?: React.MouseEventHandler;
   href?: string;
 }
 
