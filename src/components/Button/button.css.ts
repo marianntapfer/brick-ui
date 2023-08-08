@@ -1,59 +1,69 @@
 import { recipe } from '@vanilla-extract/recipes';
-import { createGlobalTheme } from '@vanilla-extract/css';
-import { tokens } from '../../tokens';
-
-// this should be in a theme.css.ts file, but now when I move it there the build breaks
-export const vars = createGlobalTheme(':root', tokens);
+import { vars } from '../../tokens.css';
+import { style, globalStyle } from '@vanilla-extract/css';
 
 export const buttonStyle = recipe({
   base: {
-    fontFamily: 'Barriecito, sans-serif',
-    fontSize: '1.5rem',
     borderRadius: 0,
-    border: 0,
+    fontFamily: 'sans-serif',
     textTransform: 'uppercase',
-    padding: '10px 40px',
-    ':focus-visible': {
-      border: `solid 2px ${vars.color.blue}`,
-    },
-    selectors: {
-      '&:focus:not(focus-visible)': {
-        outline: 'none',
-      },
-    },
+    border: `solid 2px ${vars.color.black}`,
+    background: vars.color.gray[0],
+    color: vars.color.gray[156],
+    display: 'flex',
   },
   variants: {
     variant: {
-      default: {
-        color: vars.color.white,
-        background: vars.color.black,
-        ':hover': {
-          color: vars.color.black,
-          background: vars.color.white,
-        },
-      },
-      action: {
-        color: vars.color.white,
-        background: vars.color.red,
-        ':hover': {
-          color: vars.color.red,
-          background: vars.color.white,
-        },
-        ':active': {
-          color: vars.color.yellow,
-        },
-      },
-      calm: {
+      primary: {
         color: vars.color.black,
         background: vars.color.white,
+        ':hover': {
+          background: vars.color.gray[16],
+        },
+        ':active': {
+          background: vars.color.gray[32],
+        },
       },
-      bad: {
-        color: vars.color.yellow,
-        background: vars.color.white,
+      inverted: {},
+      ghost: {
+        background: 'none',
+        border: 'none',
+        ':hover': {
+          color: vars.color.gray[100],
+        },
+        ':active': {
+          color: vars.color.gray[124],
+        },
+      },
+    },
+    type: {
+      text: {
+        padding: '0.5rem 1.2rem',
+      },
+      icon: {
+        padding: '0.5em',
       },
     },
   },
   defaultVariants: {
-    variant: 'default',
+    variant: 'primary',
+    type: 'text',
   },
 });
+
+export const svg = style({
+  width: '1rem',
+  height: '1rem',
+  fill: vars.color.black,
+});
+
+// there must be a better way to do this
+globalStyle(`${buttonStyle.classNames.variants.variant.ghost}:hover > ${svg}`, {
+  fill: vars.color.gray[100],
+});
+globalStyle(
+  `${buttonStyle.classNames.variants.variant.ghost}:active > ${svg}`,
+  {
+    fill: vars.color.gray[124],
+  }
+);
