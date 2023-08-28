@@ -16,7 +16,12 @@ export interface ModalProps {
 
 // Other way to handle click outside is to listen on click for dialog element and, add `e.stopPropogation` for dialog body. This can also handle the edge case when border is rounded.
 
-export const Modal = ({ visible, children, title }: ModalProps) => {
+export const Modal = ({
+  visible,
+  children,
+  title,
+  ...htmlProps
+}: ModalProps) => {
   const dialog = useRef<HTMLDialogElement>(null);
   const [hideTransition, setHideTransition] = useState(false);
 
@@ -48,10 +53,14 @@ export const Modal = ({ visible, children, title }: ModalProps) => {
       onTransitionEnd={() => {
         console.log('transition end');
       }}
+      {...htmlProps}
     >
       <div className={header}>
         <h1>{title}</h1>
-        <Button.Close onClick={() => closeModal()} />
+        <Button.Close
+          onClick={() => closeModal()}
+          htmlProps={{ 'aria-label': 'Close' }}
+        />
       </div>
       {children}
     </dialog>

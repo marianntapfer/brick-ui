@@ -30,17 +30,17 @@ const config: TestRunnerConfig = {
     //   /** When no defaultViewport has specified take a screenshot of the body element */
     //   image = await page.locator('body').screenshot();
     // }
-    // image = await page.locator('body').screenshot();
+    image = await page.locator('body').screenshot();
 
-    // expect(image).toMatchImageSnapshot({
-    //   failureThreshold: 500,
-    //   failureThresholdType: 'pixel',
-    //   diffDirection: 'vertical',
-    //   customSnapshotIdentifier: context.id,
-    //   dumpInlineDiffToConsole: true,
-    //   allowSizeMismatch: true,
-    //   customDiffDir: './diff'
-    // });
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: 500,
+      failureThresholdType: 'pixel',
+      diffDirection: 'vertical',
+      customSnapshotIdentifier: context.id,
+      dumpInlineDiffToConsole: true,
+      allowSizeMismatch: true,
+      customDiffDir: './diff',
+    });
 
     /** Accessibility test */
     // Apply story-level a11y rules

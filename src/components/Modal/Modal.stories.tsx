@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Modal } from './Modal';
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, waitFor, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import { useRef, useState } from 'react';
 import { Button } from '../Button';
@@ -22,12 +22,14 @@ export const Default: Story = {
   render: (args) => {
     const [modalVisible, setModalVisible] = useState(false);
     return (
-      <>
-        <Button onClick={() => setModalVisible(!modalVisible)}>
+      <div style={{ height: '200px' }}>
+        <Button
+          onClick={() => setModalVisible(!modalVisible)}
+          data-testid='button'
+        >
           open modal
         </Button>
-        <Button onClick={() => window.open()}>open window</Button>
-        <Modal visible={modalVisible} {...args}>
+        <Modal visible={modalVisible} {...args} data-testid='modal'>
           <Modal.Contents>
             <form method='dialog'>
               <Button>ok</Button>
@@ -37,8 +39,21 @@ export const Default: Story = {
             <Button>ok</Button>
           </Modal.Footer>
         </Modal>
-      </>
+      </div>
     );
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getAllByTestId('button');
+    await step('open modal', async () => {
+      await userEvent.click(button[0]);
+    });
+    await step('wait for modal to be fully open', async () => {
+      const modal = await waitFor(() => canvas.getAllByTestId('modal'));
+      await waitFor(() => {
+        expect(modal).toBeDefined();
+      });
+    });
   },
 };
 
