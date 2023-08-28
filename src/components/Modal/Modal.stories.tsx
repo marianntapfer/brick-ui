@@ -4,6 +4,7 @@ import { userEvent, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import { useRef, useState } from 'react';
 import { Button } from '../Button';
+import React from 'react';
 
 const meta = {
   component: Modal,
@@ -25,15 +26,16 @@ export const Default: Story = {
         <Button onClick={() => setModalVisible(!modalVisible)}>
           open modal
         </Button>
+        <Button onClick={() => window.open()}>open window</Button>
         <Modal visible={modalVisible} {...args}>
-          <>
-            <Button>ok</Button>
-            <Button>ok</Button>
-            <Button>ok</Button>
-            <form method="dialog">
+          <Modal.Contents>
+            <form method='dialog'>
               <Button>ok</Button>
             </form>
-          </>
+          </Modal.Contents>
+          <Modal.Footer>
+            <Button>ok</Button>
+          </Modal.Footer>
         </Modal>
       </>
     );

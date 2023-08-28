@@ -47,7 +47,7 @@ export const tokens = {
     border: {
       /** 1.6px */
       // s: '0.1rem',
-      s: '1.6px',
+      s: '1.5px',
     },
   },
 } as const;

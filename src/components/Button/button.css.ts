@@ -7,10 +7,16 @@ export const buttonStyle = recipe({
     borderRadius: 0,
     fontFamily: 'sans-serif',
     textTransform: 'uppercase',
-    border: `solid 2px ${vars.color.black}`,
+    border: `solid ${vars.size.border.s} ${vars.color.black}`,
     background: vars.color.gray[0],
     color: vars.color.gray[156],
     display: 'flex',
+    ':focus-visible': {
+      borderRadius: 0,
+    },
+    ':focus': {
+      borderRadius: 0,
+    },
   },
   variants: {
     variant: {
