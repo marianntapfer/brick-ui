@@ -11,7 +11,7 @@ const meta: Meta<typeof Button> = {
   component: Button,
   //👇 Enables auto-generated documentation for the component story
   tags: ['autodocs'],
-  args: { children: 'Action', variant: 'default' },
+  args: { children: 'Action', variant: 'primary' },
   parameters: {
     // { layout: 'fullscreen' },
     backgrounds: {
@@ -32,7 +32,7 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
   args: {
     children: 'Primary',
-    variant: 'default',
+    variant: 'primary',
   },
   play: async ({ canvasElement, args }) => {
     let canvas = within(canvasElement);
@@ -50,27 +50,17 @@ export const AllVariants: Story = {
   render: (args, context) => {
     return (
       <>
-        <Button>Default</Button>
-        <Button variant='action'>Primary</Button>
-        <Button variant='calm'>Calm</Button>
+        <Button>primary</Button>
+        <Button variant='ghost'>Ghost</Button>
+        {/* <Button variant='inverted'>Inverted</Button> */}
+        <Button.Close />
       </>
     );
   },
 };
 
-export const BadVariant: Story = {
-  args: { variant: 'bad' },
-  parameters: {
-    a11y: {
-      config: {
-        rules: [{ id: 'color-contrast', selector: '' }],
-      },
-    },
-  },
-};
-
-export const ActionVariant: Story = {
-  args: { variant: 'action' },
+export const GhostVariant: Story = {
+  args: { variant: 'ghost' },
 };
 
 export const ActionLabel: Story = {
@@ -82,9 +72,15 @@ export const ActionLabel: Story = {
   // },
 };
 
+export const PresetButtons: Story = {
+  render: (args, context) => {
+    return <Button.Close />;
+  },
+};
+
 /** This story combines the two previous stories together */
 export const ActionLabelVariant: Story = {
-  args: { ...ActionLabel.args, ...ActionVariant.args },
+  args: { ...ActionLabel.args, ...GhostVariant.args },
 };
 
 export const ActionLabelVariantMobile: Story = {

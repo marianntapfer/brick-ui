@@ -6,11 +6,7 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vanillaExtractPlugin({ identifiers: 'debug' }),
-    react(),
-    dts({ rollupTypes: true }),
-  ],
+  plugins: [vanillaExtractPlugin(), react(), dts({ rollupTypes: true })],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
