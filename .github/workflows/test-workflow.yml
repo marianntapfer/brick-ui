@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Log inputs
         run: |
-          echo `I have a $pet`
+          echo 'I have a $PET'
       - name: Run script
         uses: actions/github-script@v6
         with:
@@ -32,5 +32,5 @@ jobs:
             if (myPet === 'Cat') {
               console.log(`Your cat says Mjäu!`)
             }
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow
