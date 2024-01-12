@@ -26,7 +26,7 @@ jobs:
         with:
           script: |
             const myPet = process.env.PET
-            if (myPet === 'Dog'') {
+            if (myPet === 'Dog') {
               console.log(`Your dogs says Woof Woof!`)
             }
             if (myPet === 'Cat'') {
