@@ -1,3 +1,4 @@
+name: Testing scripts and PR comments
 on:
   workflow_dispatch:
     inputs:
@@ -21,6 +22,8 @@ jobs:
       - name: Log inputs
         run: |
           echo 'I have a $PET'
+        env:
+          PET: ${{ inputs.pet }}
       - name: Run script
         uses: actions/github-script@v6
         with:
