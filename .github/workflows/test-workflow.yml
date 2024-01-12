@@ -22,6 +22,7 @@ jobs:
       - name: Run script
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const myPet = process.env.PET
             if (myPet === 'Dog') {
@@ -31,5 +32,16 @@ jobs:
             } else {
               console.log('I heard you have a pet. :)')
             }
+      - name: 'Comment PR'
+        uses: actions/github-script@v6
+        with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            console.log('CONTEXT:', context)
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+              body: 'I hear you like pets'
+            })
+
 # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow
