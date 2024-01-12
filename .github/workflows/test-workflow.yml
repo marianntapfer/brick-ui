@@ -29,7 +29,7 @@ jobs:
             if (myPet === 'Dog') {
               console.log(`Your dogs says Woof Woof!`)
             }
-            if (myPet === 'Cat'') {
+            if (myPet === 'Cat') {
               console.log(`Your cat says Mjäu!`)
             }
 
