@@ -35,7 +35,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: ${{ github.event.pull_request.number }},
-              body: `## ${commentTitle} \r\n See your test results here:`
+              body: `**${commentTitle}** \n See your test results here:`
             })
 
 # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow
