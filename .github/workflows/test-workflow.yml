@@ -37,8 +37,15 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            console.log('CONTEXT:', context)
+            const { data: comments } = await github.rest.issues.listCOmments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ github.event.pull_request.number }}
+            })
+
+            console.log('Comments', comments)
             await github.rest.issues.createComment({
+              issue_number: ${{ github.event.pull_request.number }}
               owner: context.repo.owner,
               repo: context.repo.repo
               body: 'I hear you like pets'
