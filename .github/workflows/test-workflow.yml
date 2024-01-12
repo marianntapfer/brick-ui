@@ -12,18 +12,30 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+
+            const commentTitle = 'Visual snapshot tests'
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: ${{ github.event.pull_request.number }}
             })
 
+            for (const comment of comments){
+              if(comment.user?.login === 'github-actions[bot]' && comment.body?.includes(commentTitle)){
+                github.rest.issues.deleteComment({
+                  repo: context.repo.repo,
+                  owner: context.repo.owner,
+                  comment_id: comment.id 
+                })
+              }
+            }
+
             console.log('Comments', comments)
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: ${{ github.event.pull_request.number }},
-              body: 'I hear you like pets'
+              body: `## ${commentTitle} \r\n See your test results here:`
             })
 
 # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow
