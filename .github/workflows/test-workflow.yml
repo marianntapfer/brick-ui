@@ -19,21 +19,17 @@ jobs:
   log-the-input:
     runs-on: ubuntu-latest
     steps:
-      - name: Log inputs
-        run: |
-          echo 'I have a $PET'
-        env:
-          PET: ${{ inputs.pet }}
       - name: Run script
         uses: actions/github-script@v6
         with:
           script: |
             const myPet = process.env.PET
             if (myPet === 'Dog') {
-              console.log(`Your dogs says Woof Woof!`)
-            }
-            if (myPet === 'Cat') {
-              console.log(`Your cat says Mjäu!`)
+              console.log('Your dogs says Woof Woof!')
+            } else if (myPet === 'Cat') {
+              console.log('Your cat says Mjäu!')
+            } else {
+              console.log('I heard you have a pet. :)')
             }
           github-token: ${{ secrets.GITHUB_TOKEN }}
 # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow
