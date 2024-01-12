@@ -1,0 +1,36 @@
+on:
+  workflow_dispatch:
+    inputs:
+      pet:
+        description: 'Animal companion'
+        required: true
+        default: 'Dog'
+        type: choice
+        options:
+          - 'Dog'
+          - 'Cat'
+          - 'Hamster'
+  pull_request:
+
+env:
+  PET: ${{ inputs.pet }}
+jobs:
+  log-the-input:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log inputs
+        run: |
+          echo 'I have a $pet'
+      - name: Run script
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const myPet = process.env.PET
+            if (myPet === 'Dog'') {
+              console.log(`Your dogs says Woof Woof!`)
+            }
+            if (myPet === 'Cat'') {
+              console.log(`Your cat says Mjäu!`)
+            }
+
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow
