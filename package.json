@@ -27,20 +27,21 @@
     "coverage": "npm run get-coverage && npm run make-lcov"
   },
   "dependencies": {
+    "@floating-ui/react-dom": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.2.6",
-    "@storybook/addon-a11y": "^7.1.1",
+    "@storybook/addon-a11y": "^7.6.10",
     "@storybook/addon-coverage": "^0.0.9",
-    "@storybook/addon-essentials": "^7.1.1",
-    "@storybook/addon-interactions": "^7.1.1",
-    "@storybook/addon-links": "^7.1.1",
-    "@storybook/addons": "^7.1.1",
+    "@storybook/addon-essentials": "^7.6.10",
+    "@storybook/addon-interactions": "^7.6.10",
+    "@storybook/addon-links": "^7.6.10",
+    "@storybook/addons": "^7.6.10",
     "@storybook/jest": "^0.1.0",
-    "@storybook/react": "^7.1.1",
-    "@storybook/react-vite": "^7.1.1",
+    "@storybook/react": "^7.6.10",
+    "@storybook/react-vite": "^7.6.10",
     "@storybook/test-runner": "^0.12.0",
     "@storybook/testing-library": "^0.2.0",
     "@types/react": "^18.2.17",
@@ -51,7 +52,7 @@
     "@vitejs/plugin-react-swc": "^3.3.2",
     "axe-playwright": "^1.2.3",
     "jest-image-snapshot": "^6.2.0",
-    "storybook": "^7.1.1",
+    "storybook": "^7.6.10",
     "typescript": "^5.1.6",
     "vite": "^4.0.0",
     "vite-plugin-dts": "^3.4.0"
