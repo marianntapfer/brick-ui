@@ -8,7 +8,7 @@ export interface ButtonProps {
   onClick?: () => void;
   href?: string;
   htmlProps?: React.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement>;
-  forwardRef: React.RefObject<HTMLButtonElement>;
+  forwardRef?: React.RefObject<HTMLButtonElement>;
 }
 
 export const Button = ({
