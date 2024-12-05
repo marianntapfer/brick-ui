@@ -2,8 +2,16 @@ import React from 'react';
 import { buttonStyle } from './button.css.js';
 import { RecipeVariants } from '@vanilla-extract/recipes';
 
+export const ButtonVariants = {
+  default: 'default',
+  action: 'action',
+  calm: 'calm',
+  bad: 'bad',
+  arquen: 'arquen',
+};
+
 export interface ButtonProps {
-  variant?: 'default' | 'action' | 'calm' | 'bad';
+  variant?: keyof typeof ButtonVariants;
   children: React.ReactNode;
   onClick?: () => void;
   href?: string;

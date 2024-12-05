@@ -1,6 +1,6 @@
-import { expect } from '@storybook/jest';
+import { expect } from '@storybook/test';
 import { Meta, StoryObj } from '@storybook/react';
-import { within } from '@storybook/testing-library';
+import { within } from '@storybook/test';
 import { Button } from './Button';
 import React from 'react';
 // used to be ComponentStory and ComponentMeta
@@ -53,6 +53,7 @@ export const AllVariants: Story = {
         <Button>Default</Button>
         <Button variant='action'>Primary</Button>
         <Button variant='calm'>Calm</Button>
+        <Button variant='arquen'>Arquen</Button>
       </>
     );
   },
