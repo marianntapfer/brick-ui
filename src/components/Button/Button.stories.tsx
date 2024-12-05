@@ -53,6 +53,7 @@ export const AllVariants: Story = {
         <Button>Default</Button>
         <Button variant='action'>Primary</Button>
         <Button variant='calm'>Calm</Button>
+        <Button variant='arquen'>Arquen</Button>
       </>
     );
   },
