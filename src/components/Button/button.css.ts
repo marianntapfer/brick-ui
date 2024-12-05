@@ -13,6 +13,7 @@ export const buttonStyle = recipe({
     border: 0,
     textTransform: 'uppercase',
     padding: '10px 40px',
+    boxSizing: 'border-box',
     ':focus-visible': {
       border: `solid 2px ${vars.color.blue}`,
     },
