@@ -22,7 +22,7 @@ try {
   console.error(error);
 }
 
-// make button.css.ts
+// make component.css.ts
 const cssFileName = path.join(folderPath, `${name}.css.ts`);
 const cssFileContent = `import { style } from '@vanilla-extract/css';
 
