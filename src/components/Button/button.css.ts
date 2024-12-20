@@ -1,10 +1,12 @@
 import { recipe } from '@vanilla-extract/recipes';
-import { createGlobalTheme } from '@vanilla-extract/css';
+import { createGlobalTheme, createVar } from '@vanilla-extract/css';
 import { tokens } from '../../tokens';
 import { ButtonVariants } from './Button';
 
 // this should be in a theme.css.ts file, but now when I move it there the build breaks
 export const vars = createGlobalTheme(':root', tokens);
+
+const accentColor = createVar();
 
 export const buttonStyle = recipe({
   base: {
@@ -67,14 +69,34 @@ export const buttonStyle = recipe({
         borderRadius: '10px 10px 10px 0px',
         boxShadow: '0px 5px 0px 0px #D9B08C',
         padding: '10px 20px 10px 20px',
+        marginBottom: '5px',
         textTransform: 'unset',
         ':hover': {
           background: '#FBF5EE',
         },
       },
+      //    transition: background-color .2s ease-in-out;
+      //    background-color: #4947ca;
+      [ButtonVariants.juna]: {
+        vars: {
+          [accentColor]: '#fffdf6',
+        },
+        textTransform: 'unset',
+        padding: '.5em 1em',
+        borderWidth: '2px',
+        borderColor: accentColor,
+        color: accentColor,
+        borderStyle: 'solid',
+        backgroundColor: 'transparent',
+        borderRadius: '2em',
+        transition: 'background-color .2s ease-in-out',
+        ':hover': {
+          backgroundColor: '#4947ca',
+        },
+      },
     },
   },
   defaultVariants: {
-    variant: 'default',
+    variant: ButtonVariants.default,
   },
 });

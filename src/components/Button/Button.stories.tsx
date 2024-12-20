@@ -19,7 +19,9 @@ const meta: Meta<typeof Button> = {
         { name: 'red', value: '#f00' },
         { name: 'green', value: '#0f0' },
         { name: 'blue', value: '#00f' },
+        { name: 'black', value: '#181818' },
       ],
+      // default: 'red',
     },
   },
 };
@@ -70,9 +72,16 @@ export const BadVariant: Story = {
   },
 };
 
-export const ActionVariant: Story = {
-  args: { variant: 'action' },
+export const JunaVariant: Story = {
+  args: { variant: 'juna', children: 'Juna' },
+  parameters: {
+    backgrounds: {
+      default: 'black',
+    },
+  },
 };
+
+const backgroundColor = '#181818';
 
 export const ActionLabel: Story = {
   args: { children: 'The purpose of the button' },
@@ -85,7 +94,7 @@ export const ActionLabel: Story = {
 
 /** This story combines the two previous stories together */
 export const ActionLabelVariant: Story = {
-  args: { ...ActionLabel.args, ...ActionVariant.args },
+  args: { ...ActionLabel.args, ...JunaVariant.args },
 };
 
 export const ActionLabelVariantMobile: Story = {

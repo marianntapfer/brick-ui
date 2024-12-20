@@ -1,0 +1,44 @@
+.tooltip-anchor {
+  anchor-name: --tooltip-1-anchor;
+}
+
+.tooltip {
+  /* This is how you add position fallbacks*/
+  position-try-fallbacks: --right, --left;
+  margin: 0;
+  inset: auto;
+  position: absolute;
+
+  position-anchor: --tooltip-1-anchor;
+  top: anchor(bottom);
+  /* this number should be dynamic*/
+  right: calc(anchor(center) - 122px);
+  margin-block-start: 10px;
+  opacity: 0;
+
+  transition: display 1s, opacity 1s;
+  /* progressive enchancment - transition works on newer browsers*/
+  transition-behavior: allow-discrete;
+
+  &:popover-open {
+    display: flex;
+    opacity: 1;
+
+    /* progressive enchancment - transition works on newer browsers*/
+    @starting-style {
+      opacity: 0;
+    }
+  }
+}
+
+/* this is how you define position fallbacks */
+@position-try --left {
+  inset: auto;
+  top: anchor(bottom);
+  left: anchor(left);
+}
+@position-try --right {
+  inset: auto;
+  top: anchor(bottom);
+  right: anchor(right);
+}

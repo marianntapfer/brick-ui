@@ -11,6 +11,7 @@ export const tokens = {
     blue: '#3571c9',
     greenish: '#b6c6d0',
     grayGreen: '#848283',
+    florarWhite: '#fffdf6',
   },
   size: {
     headerHeight: '100px',

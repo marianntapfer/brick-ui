@@ -28,13 +28,12 @@
     "coverage": "npm run get-coverage && npm run make-lcov"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
-    "@chromatic-com/storybook": "^3.2.2",
     "@size-limit/preset-small-lib": "^8.2.6",
     "@storybook/addon-a11y": "^8.4.7",
     "@storybook/addon-coverage": "^1.0.4",
@@ -45,8 +44,8 @@
     "@storybook/react-vite": "^8.4.7",
     "@storybook/test": "^8.4.7",
     "@storybook/test-runner": "^0.20.1",
-    "@types/react": "^18.2.17",
-    "@types/react-dom": "^18.2.7",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
     "@vanilla-extract/css": "^1.12.0",
     "@vanilla-extract/recipes": "^0.5.0",
     "@vanilla-extract/vite-plugin": "^3.8.2",
