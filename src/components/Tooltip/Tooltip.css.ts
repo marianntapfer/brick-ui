@@ -5,7 +5,8 @@ export const main = style({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  paddingRight: '500px',
+  height: '180vh',
+  width: '250vw',
 });
 
 export const tooltip = style({

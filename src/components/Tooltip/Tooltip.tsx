@@ -6,16 +6,25 @@ import './Tooltip-plain.css';
 export interface TooltipProps {
   className?: string;
   children: React.ReactNode;
+  position?: 'top-center' | 'bottom-center' | 'left-center' | 'right-center';
 }
 
 // popoverTarget and popover attributes need react 19 types
 
-export const Tooltip = ({ className, children }: TooltipProps) => {
-  const classes: string[] = [styles.main];
-  className && classes.push(className);
+export const Tooltip = ({
+  className,
+  children,
+  position = 'bottom-center',
+}: TooltipProps) => {
+  const classNames: string[] = [
+    styles.tooltip,
+    'tooltip',
+    `position__${position}`,
+  ];
+  className && classNames.push(className);
 
   return (
-    <div className={classes.join(' ')}>
+    <>
       <Button
         variant='arquen'
         popoverTarget='tooltip-1'
@@ -23,23 +32,37 @@ export const Tooltip = ({ className, children }: TooltipProps) => {
       >
         Open
       </Button>
-      <div>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis nobis
-        odit tenetur blanditiis ex temporibus, harum deserunt? Quam delectus
-        cum, magni error officiis dolorem vel est! Totam pariatur voluptatibus
-        incidunt.
+      <div className={classNames.join(' ')} popover='auto' id='tooltip-1'>
+        {children}
       </div>
-      {/* {children} */}
-      <div
-        className={`${styles.tooltip} tooltip`}
-        popover='auto'
-        id='tooltip-1'
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse at
-        laudantium quos similique veniam officia, sit laborum, veritatis quidem
-        libero sint nesciunt molestiae itaque ea. Incidunt tempora laudantium
-        cumque dolorem!
-      </div>
-    </div>
+    </>
   );
 };
+
+// advantages
+// - not dependencies needed
+// - tooltip is shown on the top layer - no z-index issues
+
+// disadvantages
+// - experimental feature, but there is a polyfill that makes it usable
+// -
+
+// target element needs to be button or input with type=buttom
+
+// extra logic is needed to show the tooltip on hover
+// --> this could be added only when hover is available, otherwise fallback to default popover behaviour
+
+// something like this to show popover on hover
+// const popover = document.querySelectorAll('[popovertarget]');
+// popover.forEach((e) => {
+//   const target = document.querySelector('#' + e.getAttribute('popovertarget'));
+//   e.addEventListener('mouseover', () => {
+//     target.showPopover();
+//   });
+
+//   e.addEventListener('mouseout', () => {
+//     target.hidePopover();
+//   });
+// });
+
+//another example: https://github.com/mdn/dom-examples/blob/main/popover-api/nested-popovers/index.js
