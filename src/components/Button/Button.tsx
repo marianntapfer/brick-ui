@@ -8,14 +8,15 @@ export const ButtonVariants = {
   calm: 'calm',
   bad: 'bad',
   arquen: 'arquen',
+  juna: 'juna',
 };
 
-export interface ButtonProps {
+export interface ButtonProps
+  extends React.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   variant?: keyof typeof ButtonVariants;
   children: React.ReactNode;
   onClick?: () => void;
   href?: string;
-  htmlProps?: React.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement>;
   forwardRef?: React.RefObject<HTMLButtonElement>;
 }
 
@@ -25,18 +26,19 @@ export const Button = ({
   href,
   onClick,
   forwardRef,
-  htmlProps,
+  className,
+  ...rest
 }: ButtonProps) => {
   return href ? (
-    <a href={href} {...htmlProps}>
-      <a className={buttonStyle({ variant })}>{children}</a>
+    <a href={href} {...rest}>
+      <a className={`${buttonStyle({ variant })} ${className}`}>{children}</a>
     </a>
   ) : (
     <button
-      className={buttonStyle({ variant })}
+      className={`${buttonStyle({ variant })} ${className}`}
       onClick={onClick}
       ref={forwardRef}
-      {...htmlProps}
+      {...rest}
     >
       {children}
     </button>
