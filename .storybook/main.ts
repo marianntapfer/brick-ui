@@ -1,5 +1,6 @@
-import type { StorybookConfig } from '@storybook/react-vite';
 import { resolve } from 'path';
+
+import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -10,7 +11,6 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
     '@storybook/addon-coverage',
-    '@chromatic-com/storybook'
   ],
 
   framework: {
@@ -24,12 +24,12 @@ const config: StorybookConfig = {
 
   //https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
   docs: {
-    defaultName: 'Guidelines'
+    defaultName: 'Guidelines',
   },
 
   typescript: {
-    reactDocgen: 'react-docgen-typescript'
-  }
+    reactDocgen: 'react-docgen-typescript',
+  },
 };
 
 export default config;
