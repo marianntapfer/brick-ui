@@ -1,36 +1,41 @@
+name: Testing scripts and PR comments
 on:
   workflow_dispatch:
-    inputs:
-      pet:
-        description: 'Animal companion'
-        required: true
-        default: 'Dog'
-        type: choice
-        options:
-          - 'Dog'
-          - 'Cat'
-          - 'Hamster'
   pull_request:
 
-env:
-  PET: ${{ inputs.pet }}
 jobs:
   log-the-input:
     runs-on: ubuntu-latest
     steps:
-      - name: Log inputs
-        run: |
-          echo 'I have a $PET'
-      - name: Run script
+      - name: 'Comment PR'
         uses: actions/github-script@v6
         with:
-          script: |
-            const myPet = process.env.PET
-            if (myPet === 'Dog') {
-              console.log(`Your dogs says Woof Woof!`)
-            }
-            if (myPet === 'Cat') {
-              console.log(`Your cat says Mjäu!`)
-            }
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+
+            const commentTitle = 'Visual snapshot tests'
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ github.event.pull_request.number }}
+            })
+
+            for (const comment of comments){
+              if(comment.user?.login === 'github-actions[bot]' && comment.body?.includes(commentTitle)){
+                github.rest.issues.deleteComment({
+                  repo: context.repo.repo,
+                  owner: context.repo.owner,
+                  comment_id: comment.id 
+                })
+              }
+            }
+
+            console.log('Comments', comments)
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ github.event.pull_request.number }},
+              body: `**${commentTitle}** \n See your test results here:`
+            })
+
 # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow
